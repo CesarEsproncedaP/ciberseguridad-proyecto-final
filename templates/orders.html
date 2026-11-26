@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="margin-top:32px">Mis pedidos</h1>
+<table>
+  <tr><th>Pedido</th><th>Vehículo</th><th>Total</th><th>Estatus</th></tr>
+  {% for o in rows %}
+  <tr>
+    <td><a href="{{ url_for('order_detail', order_id=o.id) }}">#{{ o.id }}</a></td>
+    <td>{{ o.name }}</td>
+    <td>${{ o.total }}</td>
+    <td>{{ o.status }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="4">No tienes pedidos.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,6 @@
+# Solo publica el puerto en localhost: la app tiene vulnerabilidades intencionales
+services:
+  lab:
+    build: .
+    ports:
+      - "127.0.0.1:5000:5000"

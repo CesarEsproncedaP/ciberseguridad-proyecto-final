@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="margin-top:32px">Resultados de la búsqueda</h1>
+<p class="muted">Búsqueda: {{ q }}</p>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<table>
+  <tr><th>ID</th><th>Vehículo</th><th>Año</th><th>Precio</th></tr>
+  {% for r in rows %}
+  <tr><td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td><td>{{ r[3] }}</td></tr>
+  {% else %}
+  <tr><td colspan="4">Sin resultados</td></tr>
+  {% endfor %}
+</table>
+<p><a href="{{ url_for('index') }}">Volver al catálogo</a></p>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="margin-top:32px">Pedido #{{ order.id }}</h1>
+<table>
+  <tr><th>Cliente</th><td>{{ order.owner }}</td></tr>
+  <tr><th>Vehículo</th><td>{{ order.vehicle }}</td></tr>
+  <tr><th>Total</th><td>${{ order.total }}</td></tr>
+  <tr><th>Dirección de entrega</th><td>{{ order.delivery_address }}</td></tr>
+  <tr><th>Estatus</th><td>{{ order.status }}</td></tr>
+</table>
+<p><a href="{{ url_for('my_orders') }}">Volver a mis pedidos</a></p>
+{% endblock %}

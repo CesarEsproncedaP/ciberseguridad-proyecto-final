@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="margin-top:32px">
+  <div class="thumb" style="border-radius:16px; height:170px; background: linear-gradient(135deg, hsl({{ (v.id * 47) % 360 }}, 55%, 38%), hsl({{ (v.id * 47 + 40) % 360 }}, 55%, 16%));"></div>
+  <h1 style="margin-top:18px">{{ v.name }}</h1>
+  <p class="muted">Modelo {{ v.year }}</p>
+  <p>{{ v.description }}</p>
+  <p style="font-size:1.4rem"><strong>${{ v.price }}</strong></p>
+</div>
+<h2 class="sec">Reseñas</h2>
+{% for r in reviews %}
+<div class="review"><b>{{ r.username }}</b><br>{{ r.comment|safe }}</div>
+{% else %}
+<p class="muted">Aún no hay reseñas.</p>
+{% endfor %}
+{% if session.get('user_id') %}
+<div class="panel">
+  <form action="{{ url_for('add_review', vehicle_id=v.id) }}" method="post">
+    <label>Tu reseña<textarea name="comment" rows="3" style="display:block;width:100%;margin-top:6px"></textarea></label>
+    <button class="btn" type="submit">Publicar reseña</button>
+  </form>
+</div>
+{% else %}
+<p><a href="{{ url_for('login') }}">Inicia sesión</a> para escribir una reseña.</p>
+{% endif %}
+{% endblock %}

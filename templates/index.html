@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+  <small>Compra y venta de autos</small>
+  <h1>Tu próximo auto, con el precio a la vista.</h1>
+  <p>Consulta el catálogo, compara versiones y revisa el estatus de tus pedidos en un solo lugar.</p>
+  <form action="{{ url_for('search') }}" method="get">
+    <input type="text" name="q" placeholder="Buscar vehículo"> <button class="btn" type="submit">Buscar</button>
+  </form>
+</div>
+<h2 class="sec">Catálogo</h2>
+<div class="grid">
+  {% for v in vehicles %}
+  <div class="item">
+    <a class="card" href="{{ url_for('vehicle', vehicle_id=v.id) }}">
+      <div class="thumb" style="background: linear-gradient(135deg, hsl({{ (v.id * 47) % 360 }}, 55%, 38%), hsl({{ (v.id * 47 + 40) % 360 }}, 55%, 16%));"></div>
+      <div class="body">
+        <div class="name">{{ v.name }}</div>
+        <div class="meta">Modelo {{ v.year }}</div>
+        <div class="price">${{ v.price }}</div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
