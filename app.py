@@ -1,4 +1,4 @@
-"""
+﻿"""
 App de laboratorio en Flask para el proyecto final de Ciberseguridad.
 
 ATENCIÓN: contiene vulnerabilidades INTENCIONALES (SQL Injection, XSS
@@ -164,7 +164,8 @@ def order_detail(order_id):
     ).fetchone()
     if order is None:
         abort(404)
-    # VULNERABLE (IDOR/BOLA): no se comprueba que el pedido pertenezca al usuario de la sesión
+    if order["user_id"] != session["user_id"] and session.get("role") != "admin":
+        abort(403)
     log.info("ORDER_VIEW user=%s order=%s", session["username"], order_id)
     return render_template("order.html", order=order)
 

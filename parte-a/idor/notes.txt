@@ -1,0 +1,7 @@
+﻿HALLAZGO: IDOR / BOLA (Control de acceso roto)
+
+Endpoint afectado: GET /orders/<id>
+Descripcion: la aplicacion consulta el pedido por su id y lo muestra sin comprobar que pertenezca al usuario que inicio sesion.
+Procedimiento: login como alice (alice/alice123), abrir /orders/3 (pedido de bob) y recorrer los ids 1 a 6 con curl y con el Fuzzer de OWASP ZAP.
+Resultado observado: alice recibe 200 con los datos de bob en los pedidos 3 y 4 (cliente, vehiculo, total, direccion y estatus). Los ids 5 y 6 devuelven 404.
+Riesgo e impacto: exposicion de datos personales y comerciales de otros clientes. Un atacante autenticado puede enumerar todos los pedidos cambiando el id.
