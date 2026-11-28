@@ -1,0 +1,9 @@
+test_ataques_no_devuelven_datos (__main__.PruebasSQLi.test_ataques_no_devuelven_datos) ... ok
+test_busqueda_normal_sigue_funcionando (__main__.PruebasSQLi.test_busqueda_normal_sigue_funcionando) ... ok
+test_busqueda_vacia_muestra_todo_el_catalogo (__main__.PruebasSQLi.test_busqueda_vacia_muestra_todo_el_catalogo) ... ok
+test_comodines_like_se_tratan_como_texto (__main__.PruebasSQLi.test_comodines_like_se_tratan_como_texto) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.066s
+
+OK

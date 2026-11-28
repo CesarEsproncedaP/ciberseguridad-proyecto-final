@@ -1,0 +1,10 @@
+2026-11-27 18:37:26,189 INFO SEARCH q='SUV' ip=127.0.0.1
+2026-11-27 18:37:26,216 INFO SEARCH q="'" ip=127.0.0.1
+2026-11-27 18:37:26,236 INFO SEARCH q="zzz' OR 1=1--" ip=127.0.0.1
+2026-11-27 18:37:26,255 INFO SEARCH q="zzz' UNION SELECT id, username, role, password_hash FROM users--" ip=127.0.0.1
+2026-11-27 18:37:26,276 INFO SEARCH q="zzz' UNION SELECT id, delivery_address, user_id, total FROM orders--" ip=127.0.0.1
+2026-11-27 18:37:26,296 INFO SEARCH q="zzz' UNION SELECT 1, name, 2, type FROM sqlite_master WHERE type='table'--" ip=127.0.0.1
+2026-11-27 18:37:26,318 INFO SEARCH q='Sedán' ip=127.0.0.1
+2026-11-27 18:37:26,328 INFO SEARCH q='%' ip=127.0.0.1
+2026-11-27 18:37:26,338 INFO SEARCH q='_' ip=127.0.0.1
+2026-11-27 18:37:26,346 INFO SEARCH q='' ip=127.0.0.1
