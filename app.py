@@ -99,13 +99,17 @@ def logout():
 
 @app.route("/search")
 def search():
-    q = request.args.get("q", "")
-    # VULNERABLE (SQL Injection): la entrada del usuario se concatena en la consulta
-    sql = "SELECT id, name, year, price FROM vehicles WHERE name LIKE '%" + q + "%'"
+    # Se limita la longitud: ningún nombre de vehículo legítimo pasa de 100 caracteres
+    q = request.args.get("q", "")[:100]
+    # CORREGIDO (SQL Injection): consulta parametrizada. La entrada viaja como dato
+    # (marcador ?), nunca como parte del código SQL. También se escapan los comodines
+    # de LIKE (% y _) para que se busquen como texto literal.
+    patron = "%" + q.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"
+    sql = "SELECT id, name, year, price FROM vehicles WHERE name LIKE ? ESCAPE '\\'"
     log.info("SEARCH q=%r ip=%s", q, request.remote_addr)
     rows, error = [], None
     try:
-        rows = get_db().execute(sql).fetchall()
+        rows = get_db().execute(sql, (patron,)).fetchall()
     except sqlite3.Error as exc:
         error = "Error en la consulta"
         log.error("SEARCH_ERROR q=%r error=%s", q, exc)
